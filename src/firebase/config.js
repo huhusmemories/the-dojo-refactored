@@ -4,13 +4,13 @@ import 'firebase/auth'
 import 'firebase/storage'
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDXBeEYHuAA42LMCkxhdsOoYdMO2n7tgos",
-  authDomain: "udemy-files-dojo.firebaseapp.com",
-  projectId: "udemy-files-dojo",
-  storageBucket: "udemy-files-dojo.appspot.com",
-  messagingSenderId: "244633033606",
-  appId: "1:244633033606:web:aa1833bda9c7906227ea07"
-}
+  apiKey: "AIzaSyBZcQHcgf_9nBZXpXyGpxckogo2Z14Y7Aw",
+  authDomain: "thedojo-99926.firebaseapp.com",
+  projectId: "thedojo-99926",
+  storageBucket: "thedojo-99926.appspot.com",
+  messagingSenderId: "341069979136",
+  appId: "1:341069979136:web:b1810f96960d77b70ac2e5"
+};
 
 // init firebase
 firebase.initializeApp(firebaseConfig)
