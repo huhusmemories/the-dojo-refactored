@@ -3,7 +3,7 @@ import { useCollection } from '../../hooks/useCollection'
 import { useAuthContext } from '../../hooks/useAuthContext'
 import { timestamp } from '../../firebase/config'
 import { useFirestore } from '../../hooks/useFirestore'
-import { useHistory } from 'react-router'
+import { useNavigate } from 'react-router'
 import Select from 'react-select'
 
 // styles
@@ -17,7 +17,7 @@ const categories = [
 ]
 
 export default function Create() {
-  const history = useHistory()
+  const navigate = useNavigate()
   const { addDocument, response } = useFirestore('projects')
   const { user } = useAuthContext()
   const { documents } = useCollection('users')
@@ -54,14 +54,14 @@ export default function Create() {
     }
 
     const assignedUsersList = assignedUsers.map(u => {
-      return { 
-        displayName: u.value.displayName, 
+      return {
+        displayName: u.value.displayName,
         photoURL: u.value.photoURL,
         id: u.value.id
       }
     })
-    const createdBy = { 
-      displayName: user.displayName, 
+    const createdBy = {
+      displayName: user.displayName,
       photoURL: user.photoURL,
       id: user.uid
     }
@@ -69,7 +69,7 @@ export default function Create() {
     const project = {
       name,
       details,
-      assignedUsersList, 
+      assignedUsersList,
       createdBy,
       category: category.value,
       dueDate: timestamp.fromDate(new Date(dueDate)),
@@ -78,7 +78,7 @@ export default function Create() {
 
     await addDocument(project)
     if (!response.error) {
-      history.push('/')
+      navigate('/')
     }
   }
 
@@ -89,26 +89,26 @@ export default function Create() {
         <label>
           <span>Project name:</span>
           <input
-            required 
-            type="text" 
+            required
+            type="text"
             onChange={(e) => setName(e.target.value)}
             value={name}
           />
         </label>
         <label>
           <span>Project Details:</span>
-          <textarea 
+          <textarea
             required
             onChange={(e) => setDetails(e.target.value)}
-            value={details} 
+            value={details}
           ></textarea>
         </label>
         <label>
           <span>Set due date:</span>
           <input
-            required 
-            type="date" 
-            onChange={(e) => setDueDate(e.target.value)} 
+            required
+            type="date"
+            onChange={(e) => setDueDate(e.target.value)}
             value={dueDate}
           />
         </label>
